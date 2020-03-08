@@ -9,3 +9,37 @@ Development based in my friend's post (PT-BR) [Como consumir o webservice dos co
 * [NodeJS](https://nodejs.org/en/) - Plus modules (Express, Soap, Request and Nodemon)
 * [Postman](https://www.postman.com) - Just for testing
 * [WSDL from Correios](https://apps.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente?wsdl) - This file contains the methods we'll use.
+
+## Using It
+
+**Example of consult:**
+``` 
+router.get('/consulta/:cep', function (req, res, next) {
+
+  var receivedCep = req.params.cep;
+  var url = 'https://apps.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente?wsdl';
+
+  soap.createClient(url, (err, client) => {
+    client.consultaCEP({ cep: receivedCep }, (err, result) => {
+      if (err) return console.error(err);
+      res.send(result);
+    })
+  });
+
+});
+```
+**Example of return:**
+```
+{
+    "return": {
+        "bairro": "...",
+        "cep": "...",
+        "cidade": "...",
+        "complemento2": "...",
+        "end": "...",
+        "uf": "..."
+    }
+}
+```
+
+
