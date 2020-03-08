@@ -17,6 +17,8 @@
     "soap": "^0.31.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "constantinople": "^3.0.2",
+    "clean-css": "^3.1.9"
   }
 }
